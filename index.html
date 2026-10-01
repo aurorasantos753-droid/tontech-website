@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TONTECH provides web development, software solutions, booking systems, internet services and surveillance installation.">
+  <title>TONTECH | Technology Solutions</title>
+  <style>
+    :root{
+      --bg:#07111f; --bg2:#0b1728; --card:#0e1d30; --line:#20334b;
+      --text:#f4f8ff; --muted:#9eb0c8; --accent:#36b8ff; --accent2:#6d5cff;
+      --white:#fff; --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(92%,var(--max));margin:auto}
+    header{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(7,17,31,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:1.45rem;font-weight:900;letter-spacing:.12em}
+    .logo span{color:var(--accent)}
+    .navlinks{display:flex;gap:30px;align-items:center}
+    .navlinks a{color:#cbd7e7;font-size:.94rem;transition:.2s}
+    .navlinks a:hover{color:#fff}
+    .navcta{padding:11px 18px;border:1px solid #315273;border-radius:999px}
+    .menu{display:none;background:none;border:0;color:#fff;font-size:1.5rem}
+    .hero{min-height:100vh;padding:160px 0 90px;position:relative;overflow:hidden;background:
+      radial-gradient(circle at 78% 25%,rgba(54,184,255,.18),transparent 28%),
+      radial-gradient(circle at 15% 75%,rgba(109,92,255,.13),transparent 30%)}
+    .hero:before{content:"";position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;position:relative}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border:1px solid #284563;background:#0b1b2d;border-radius:999px;color:#a9dfff;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+    h1{font-size:clamp(3rem,7vw,6.3rem);line-height:.96;letter-spacing:-.06em;margin:22px 0}
+    h1 .gradient{background:linear-gradient(100deg,#fff 15%,#62c8ff 55%,#8e7cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:650px;color:var(--muted);font-size:1.1rem}
+    .actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 21px;border-radius:10px;font-weight:800;border:1px solid transparent;transition:.2s}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#5f8dff);color:#03101d;box-shadow:0 12px 35px rgba(54,184,255,.18)}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-secondary{border-color:#304861;color:#dce9f8;background:#0a1727}
+    .hero-card{border:1px solid #223b56;background:linear-gradient(160deg,rgba(20,40,64,.9),rgba(8,20,34,.96));border-radius:24px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+    .terminal{border:1px solid #29445e;border-radius:16px;overflow:hidden;background:#07111c}
+    .terminal-top{padding:12px 15px;border-bottom:1px solid #20364c;display:flex;gap:7px}
+    .dot{width:9px;height:9px;border-radius:50%;background:#36516b}
+    .terminal-body{padding:24px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#b9d0e6;font-size:.86rem}
+    .terminal-body .cyan{color:#5bc8ff}.terminal-body .purple{color:#9c8bff}.terminal-body .green{color:#75e3a0}
+    section{padding:100px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+    .section-head h2{font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.04em;line-height:1.05}
+    .section-head p{color:var(--muted);max-width:520px}
+    .services{background:var(--bg2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+    .service-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+    .service{padding:25px;border:1px solid var(--line);background:#0a1829;border-radius:18px;min-height:245px;transition:.25s}
+    .service:hover{transform:translateY(-6px);border-color:#3c668e}
+    .icon{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:#102943;color:#62c8ff;font-size:1.35rem;margin-bottom:22px}
+    .service h3{font-size:1.08rem;margin-bottom:9px}.service p{color:var(--muted);font-size:.9rem}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+    .about-copy p{color:var(--muted);margin:18px 0}
+    .checks{display:grid;gap:13px;margin-top:25px}
+    .check{display:flex;gap:11px;align-items:flex-start;color:#d7e5f5}.check b{color:#5bc8ff}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .stat{padding:28px;border:1px solid var(--line);border-radius:18px;background:#0b192a}.stat strong{font-size:2.3rem;display:block}.stat span{color:var(--muted);font-size:.9rem}
+    .cta{padding:0 0 100px}.cta-box{border:1px solid #2c4c6a;border-radius:26px;padding:55px;background:radial-gradient(circle at 85% 20%,rgba(54,184,255,.16),transparent 30%),#0b192a;display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .cta-box p{color:var(--muted);max-width:600px;margin-top:10px}
+    footer{border-top:1px solid rgba(255,255,255,.07);padding:28px 0;color:#8498af}.footer-inner{display:flex;justify-content:space-between;gap:20px}.footer-inner strong{color:#fff}
+
+    .whatsapp-float{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;align-items:center;gap:9px;padding:13px 17px;border-radius:999px;background:#25D366;color:#06140b;font-weight:900;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:.2s}
+    .whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(37,211,102,.25)}
+    .whatsapp-icon{font-size:1.15rem}
+
+    @media(max-width:950px){.service-grid{grid-template-columns:repeat(2,1fr)}.hero-grid,.about-grid{grid-template-columns:1fr}.hero-card{max-width:700px}.cta-box{flex-direction:column;align-items:flex-start}}
+    @media(max-width:700px){.navlinks{display:none;position:absolute;top:76px;left:0;right:0;padding:20px;background:#07111f;border-bottom:1px solid #20334b;flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu{display:block}.service-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:15px}.hero{padding-top:135px}h1{font-size:3.4rem}.footer-inner{flex-direction:column}}
+  
+/* Additional TONTECH sections */
+.feature-grid,.process-grid,.faq-grid,.capability-grid,.booking-demo,.contact-grid,.legal-grid{display:grid;gap:1.25rem}
+.feature-grid{grid-template-columns:repeat(3,1fr)}
+.capability-grid{grid-template-columns:repeat(4,1fr)}
+.process-grid{grid-template-columns:repeat(4,1fr)}
+.faq-grid{grid-template-columns:repeat(2,1fr)}
+.contact-grid{grid-template-columns:1fr 1.15fr;align-items:start}
+.booking-demo{grid-template-columns:repeat(5,1fr);counter-reset:step}
+.feature-card,.capability-card,.process-card,.faq-card,.quote-card,.contact-card,.booking-step,.testimonial-card,.legal-card{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:18px;padding:1.4rem}
+.feature-card h3,.capability-card h3,.process-card h3,.faq-card h3,.booking-step h3,.testimonial-card h3{margin-top:0}
+.icon-badge,.step-number{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);margin-bottom:1rem;font-weight:800}
+.step-number:before{counter-increment:step;content:counter(step)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.45rem}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-weight:650;font-size:.92rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.9rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);color:inherit;outline:none}
+.form-group textarea{min-height:130px;resize:vertical}
+.form-note{font-size:.82rem;opacity:.7}
+.quote-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
+.muted{opacity:.72}
+.section-kicker{text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;font-weight:800;opacity:.65;margin-bottom:.5rem}
+.cta-strip{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+.legal-grid{grid-template-columns:1fr 1fr}
+.legal-card h3{margin-top:0}
+@media(max-width:900px){
+  .feature-grid,.capability-grid,.process-grid{grid-template-columns:1fr 1fr}
+  .booking-demo{grid-template-columns:1fr 1fr}
+  .contact-grid,.legal-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .feature-grid,.capability-grid,.process-grid,.faq-grid,.booking-demo,.form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:auto}
+  .cta-strip{flex-direction:column;align-items:flex-start}
+}
+
+</style>
+
+<!-- TONTECH analytics-ready setup. Replace TONTECH_ANALYTICS_ID with your Google Analytics 4 ID when ready. -->
+<script>
+  const TONTECH_ANALYTICS_ID = "";
+  if (TONTECH_ANALYTICS_ID) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + TONTECH_ANALYTICS_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", TONTECH_ANALYTICS_ID);
+  }
+</script>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">TON<span>TECH</span></a>
+      <button class="menu" aria-label="Open menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+      <div class="navlinks">
+        <a href="#home">Home</a><a href="#services">Services</a>
+        <a href="#quote">Get a Quote</a><a href="#about">About</a><a href="#contact" class="navcta">Get a Quote</a><a href="https://wa.me/254792965445?text=Hello%20TONTECH%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" class="navcta">WhatsApp</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Technology • Connectivity • Security</div>
+      <h1>We build the <span class="gradient">technology</span> that moves business forward.</h1>
+      <p>TONTECH delivers practical technology solutions — from modern websites and custom software to booking platforms, reliable internet services and professional surveillance installations.</p>
+      <div class="actions"><a class="btn btn-primary" href="#contact">Start a Project →</a><a class="btn btn-secondary" href="#services">Explore Services</a></div>
+    </div>
+    <div class="hero-card">
+      <div class="terminal">
+        <div class="terminal-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="terminal-body">
+          <div><span class="purple">tontech</span>@solutions:~$ launch</div><br>
+          <div><span class="cyan">WEB_DEVELOPMENT</span> ........ <span class="green">READY</span></div>
+          <div><span class="cyan">SOFTWARE</span> ............... <span class="green">READY</span></div>
+          <div><span class="cyan">BOOKING_SYSTEMS</span> ........ <span class="green">READY</span></div>
+          <div><span class="cyan">INTERNET_SERVICES</span> ...... <span class="green">READY</span></div>
+          <div><span class="cyan">SURVEILLANCE</span> ........... <span class="green">READY</span></div><br>
+          <div>Building secure digital solutions<span class="cyan">_</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head"><h2>What TONTECH does.</h2><p>Technology solutions designed around real business needs — from your online presence to your physical security and connectivity.</p></div>
+    <div class="service-grid">
+      <a href="#web-development" style="display:block"><article class="service"><div class="icon">⌘</div><h3>Web Development</h3><p>Fast, responsive business websites, e-commerce platforms and custom web applications.</p></article>
+      <a href="#software-development" style="display:block"><article class="service"><div class="icon">◈</div><h3>Software Development</h3><p>Custom systems that help businesses manage operations, customers, data and workflows.</p></article>
+      <a href="#booking-systems" style="display:block"><article class="service"><div class="icon">▣</div><h3>Booking Systems</h3><p>Reservation and appointment platforms with guest management and online payment options.</p></article>
+      <a href="#internet-services" style="display:block"><article class="service"><div class="icon">⌁</div><h3>Internet Services</h3><p>Internet connectivity and network solutions for homes, offices and growing businesses.</p></article>
+      <a href="#surveillance" style="display:block"><article class="service"><div class="icon">◉</div><h3>Surveillance Installation</h3><p>CCTV and security-camera installation, setup, monitoring solutions and maintenance.</p></article>
+    </div>
+  </div>
+</section>
+
+
+<section id="service-details" style="background:#07111f;border-top:1px solid rgba(255,255,255,.04)">
+  <div class="container">
+    <div class="section-head">
+      <h2>Our Services</h2>
+      <p>From digital products to connectivity and physical security, TONTECH provides technology solutions designed around your requirements.</p>
+    </div>
+
+    <div style="display:grid;gap:22px">
+      <article class="service" id="web-development" style="min-height:auto;padding:32px">
+        <div class="icon">⌘</div>
+        <h3 style="font-size:1.5rem">Web Development</h3>
+        <p style="margin:12px 0 20px">We create modern, responsive websites and web applications that give businesses a professional digital presence and make it easier for customers to connect with them.</p>
+        <div class="checks" style="margin-top:0">
+          <div class="check"><b>✓</b><span>Business and corporate websites</span></div>
+          <div class="check"><b>✓</b><span>E-commerce websites and online platforms</span></div>
+          <div class="check"><b>✓</b><span>Responsive mobile-friendly designs</span></div>
+          <div class="check"><b>✓</b><span>Custom web applications</span></div>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="#contact">Request Web Development →</a></div>
+      </article>
+
+      <article class="service" id="software-development" style="min-height:auto;padding:32px">
+        <div class="icon">◈</div>
+        <h3 style="font-size:1.5rem">Software Development</h3>
+        <p style="margin:12px 0 20px">We develop customized software solutions that help businesses manage information, operations, customers and everyday workflows more efficiently.</p>
+        <div class="checks" style="margin-top:0">
+          <div class="check"><b>✓</b><span>Custom business management systems</span></div>
+          <div class="check"><b>✓</b><span>Customer and data management solutions</span></div>
+          <div class="check"><b>✓</b><span>Workflow and operations systems</span></div>
+          <div class="check"><b>✓</b><span>System improvements and ongoing support</span></div>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="#contact">Discuss Your Software →</a></div>
+      </article>
+
+      <article class="service" id="booking-systems" style="min-height:auto;padding:32px">
+        <div class="icon">▣</div>
+        <h3 style="font-size:1.5rem">Booking Systems</h3>
+        <p style="margin:12px 0 20px">We build reservation and appointment systems that make it easier for customers to book services while giving businesses better control over their bookings.</p>
+        <div class="checks" style="margin-top:0">
+          <div class="check"><b>✓</b><span>Hotel and accommodation booking systems</span></div>
+          <div class="check"><b>✓</b><span>Appointment and reservation systems</span></div>
+          <div class="check"><b>✓</b><span>Guest/customer management</span></div>
+          <div class="check"><b>✓</b><span>Online payment integration options</span></div>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="#contact">Build a Booking System →</a></div>
+      </article>
+
+      <article class="service" id="internet-services" style="min-height:auto;padding:32px">
+        <div class="icon">⌁</div>
+        <h3 style="font-size:1.5rem">Internet Service Provision</h3>
+        <p style="margin:12px 0 20px">TONTECH provides internet and networking solutions designed to help homes, offices and businesses stay connected and productive.</p>
+        <div class="checks" style="margin-top:0">
+          <div class="check"><b>✓</b><span>Internet connectivity solutions</span></div>
+          <div class="check"><b>✓</b><span>Wi-Fi and network setup</span></div>
+          <div class="check"><b>✓</b><span>Router and network configuration</span></div>
+          <div class="check"><b>✓</b><span>Network support and maintenance</span></div>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="#contact">Ask About Internet Services →</a></div>
+      </article>
+
+      <article class="service" id="surveillance" style="min-height:auto;padding:32px">
+        <div class="icon">◉</div>
+        <h3 style="font-size:1.5rem">Surveillance Installation</h3>
+        <p style="margin:12px 0 20px">We install and configure surveillance solutions for homes, offices, shops and other properties, helping clients monitor their spaces more effectively.</p>
+        <div class="checks" style="margin-top:0">
+          <div class="check"><b>✓</b><span>CCTV and security camera installation</span></div>
+          <div class="check"><b>✓</b><span>Camera configuration and setup</span></div>
+          <div class="check"><b>✓</b><span>Remote monitoring solutions</span></div>
+          <div class="check"><b>✓</b><span>Maintenance and technical support</span></div>
+        </div>
+        <div class="actions"><a class="btn btn-primary" href="#contact">Request CCTV Installation →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section id="capabilities" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Capabilities</div>
+    <h2>Technology built around your needs.</h2>
+    <p>From the first idea to deployment and support, TONTECH combines practical technology with business-focused thinking.</p>
+  </div>
+  <div class="capability-grid">
+    <div class="capability-card"><div class="icon-badge">01</div><h3>Frontend & Web</h3><p>Responsive websites and modern interfaces designed for performance, clarity and conversion.</p></div>
+    <div class="capability-card"><div class="icon-badge">02</div><h3>Software Systems</h3><p>Custom business applications and digital workflows built around real operational requirements.</p></div>
+    <div class="capability-card"><div class="icon-badge">03</div><h3>Booking & Payments</h3><p>Booking journeys, availability flows and payment-ready experiences for hospitality and service businesses.</p></div>
+    <div class="capability-card"><div class="icon-badge">04</div><h3>Connectivity & Security</h3><p>Internet service solutions and surveillance installations that help businesses stay connected and secure.</p></div>
+  </div>
+</section>
+
+<section id="why-tontech" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Why TONTECH</div>
+    <h2>Technology with a practical business focus.</h2>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card"><h3>Built for your workflow</h3><p>We start by understanding how your business works, then shape the solution around your actual needs.</p></div>
+    <div class="feature-card"><h3>Scalable foundations</h3><p>Solutions are structured so features and capacity can grow as your business grows.</p></div>
+    <div class="feature-card"><h3>One technology partner</h3><p>Web, software, booking, connectivity and surveillance services can be coordinated through one team.</p></div>
+  </div>
+</section>
+
+<section id="how-we-work" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">How We Work</div>
+    <h2>A clear process from idea to delivery.</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-card"><div class="step-number"></div><h3>Discover</h3><p>We discuss your goals, users, current challenges and required features.</p></div>
+    <div class="process-card"><div class="step-number"></div><h3>Plan</h3><p>We define the scope, solution approach, priorities and delivery milestones.</p></div>
+    <div class="process-card"><div class="step-number"></div><h3>Build</h3><p>We develop, configure and test the solution while keeping you involved.</p></div>
+    <div class="process-card"><div class="step-number"></div><h3>Launch & Support</h3><p>We help move the solution into use and provide ongoing improvements where needed.</p></div>
+  </div>
+</section>
+
+<section id="booking-demo" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Booking Demo</div>
+    <h2>See how a digital booking journey can work.</h2>
+    <p>This is a demonstration flow for the booking systems TONTECH can build and customize.</p>
+  </div>
+  <div class="booking-demo">
+    <div class="booking-step"><div class="step-number"></div><h3>Check availability</h3><p>Select check-in and check-out dates.</p></div>
+    <div class="booking-step"><div class="step-number"></div><h3>Choose</h3><p>Select adults, children and the available room or service.</p></div>
+    <div class="booking-step"><div class="step-number"></div><h3>Guest details</h3><p>Enter contact and reservation information.</p></div>
+    <div class="booking-step"><div class="step-number"></div><h3>Payment</h3><p>Choose a configured payment method such as M-Pesa or card.</p></div>
+    <div class="booking-step"><div class="step-number"></div><h3>Confirmation</h3><p>Receive reservation details and confirmation.</p></div>
+  </div>
+</section>
+
+<section id="testimonials" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Testimonials</div>
+    <h2>Client feedback</h2>
+    <p class="muted">This section is ready for verified client testimonials. We do not publish invented reviews.</p>
+  </div>
+  <div class="feature-grid">
+    <div class="testimonial-card"><h3>Client testimonial</h3><p class="muted">Add a real client quote here after receiving permission to publish it.</p></div>
+    <div class="testimonial-card"><h3>Client testimonial</h3><p class="muted">Add a second verified client experience here.</p></div>
+    <div class="testimonial-card"><h3>Client testimonial</h3><p class="muted">Add another genuine review when available.</p></div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">FAQ</div>
+    <h2>Frequently asked questions.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-card"><h3>What services does TONTECH provide?</h3><p>TONTECH provides web development, software development, booking systems, internet services and surveillance installation.</p></div>
+    <div class="faq-card"><h3>Can you build a custom system?</h3><p>Yes. Software and booking solutions can be designed around your business requirements and workflow.</p></div>
+    <div class="faq-card"><h3>Can a booking system accept payments?</h3><p>Yes. Payment integrations can be configured for supported providers, including M-Pesa and card payments where the required accounts and credentials are available.</p></div>
+    <div class="faq-card"><h3>Do you provide support after launch?</h3><p>Support and ongoing improvements can be included according to the agreed project scope and maintenance arrangement.</p></div>
+    <div class="faq-card"><h3>How do I request a quote?</h3><p>Use the quote form below or contact TONTECH directly by phone, email or WhatsApp.</p></div>
+    <div class="faq-card"><h3>Can you work with an existing website or system?</h3><p>Yes. Existing systems can be reviewed and improved where the technology and access available allow it.</p></div>
+  </div>
+</section>
+
+<section id="quote" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Request a Quote</div>
+    <h2>Tell us what you want to build.</h2>
+    <p>Submit the details below. This static site prepares the request as an email; no information is sent until you press your email client's send button.</p>
+  </div>
+  <div class="quote-card">
+    <form id="quoteForm" action="mailto:infotontechf@gmail.com" method="post" enctype="text/plain">
+      <div class="form-grid">
+        <div class="form-group"><label for="qname">Name</label><input id="qname" name="Name" required></div>
+        <div class="form-group"><label for="qcompany">Company / Organization</label><input id="qcompany" name="Company"></div>
+        <div class="form-group"><label for="qemail">Email</label><input id="qemail" name="Email" type="email" required></div>
+        <div class="form-group"><label for="qphone">Phone</label><input id="qphone" name="Phone" type="tel"></div>
+        <div class="form-group"><label for="qservice">Service</label>
+          <select id="qservice" name="Service" required>
+            <option value="">Select a service</option>
+            <option>Web Development</option><option>Software Development</option><option>Booking Systems</option><option>Internet Services</option><option>Surveillance Installation</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="qbudget">Estimated Budget</label>
+          <select id="qbudget" name="Budget">
+            <option value="">Select an option</option><option>Under KSh 50,000</option><option>KSh 50,000 – 100,000</option><option>KSh 100,000 – 250,000</option><option>KSh 250,000+</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group full"><label for="qmessage">Project details</label><textarea id="qmessage" name="Project Details" required placeholder="Tell us what you need, your target users, key features and any deadline."></textarea></div>
+      </div>
+      <div class="quote-actions">
+        <button class="btn btn-primary" type="submit">Prepare Quote Request</button>
+        <a class="btn btn-secondary" href="https://wa.me/254792965445?text=Hello%20TONTECH%2C%20I%27d%20like%20to%20request%20a%20quote.">Request via WhatsApp</a>
+      </div>
+      <p class="form-note">For a fully automated online form, the site will need a form backend or email service after hosting.</p>
+    </form>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Contact</div>
+    <h2>Let's discuss your technology needs.</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>TONTECH</h3>
+      <p>Web, software, booking, connectivity and surveillance solutions.</p>
+      <p><strong>Phone:</strong> <a href="tel:+254792965445">0792965445</a></p>
+      <p><strong>Email:</strong> <a href="mailto:infotontechf@gmail.com">infotontechf@gmail.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/254792965445">Chat with TONTECH</a></p>
+    </div>
+    <div class="contact-card">
+      <h3>Start a conversation</h3>
+      <p>For a faster response, include the service you need and a short description of the project.</p>
+      <div class="quote-actions">
+        <a class="btn btn-primary" href="mailto:infotontechf@gmail.com?subject=TONTECH%20Project%20Enquiry">Email TONTECH</a>
+        <a class="btn btn-secondary" href="https://wa.me/254792965445?text=Hello%20TONTECH%2C%20I%27d%20like%20to%20discuss%20a%20project.">WhatsApp TONTECH</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="legal" class="section">
+  <div class="section-heading">
+    <div class="section-kicker">Legal & Policies</div>
+    <h2>Important website information.</h2>
+  </div>
+  <div class="legal-grid">
+    <div class="legal-card">
+      <h3>Privacy Policy</h3>
+      <p>TONTECH should only collect information necessary to respond to enquiries and deliver requested services. Contact information submitted through the quote form should be handled securely and not sold to third parties.</p>
+      <p class="muted">Before launch, this policy should be expanded to match the actual hosting, analytics, payment and form providers used by the website.</p>
+    </div>
+    <div class="legal-card">
+      <h3>Terms & Service</h3>
+      <p>Project scope, pricing, timelines, payment milestones, revisions, ownership, support and cancellation terms should be agreed with each client in writing.</p>
+      <p class="muted">Final terms should be reviewed and customized for TONTECH's actual business operations.</p>
+    </div>
+    <div class="legal-card">
+      <h3>Payments & Refunds</h3>
+      <p>Any payment integration should clearly state accepted payment methods, transaction terms and the applicable refund or cancellation conditions before payment is completed.</p>
+    </div>
+    <div class="legal-card">
+      <h3>Cookies & Analytics</h3>
+      <p>If analytics or non-essential cookies are enabled, the final production site should provide the appropriate notice and controls required by the applicable laws and services used.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <div class="eyebrow">About TONTECH</div>
+      <h2 style="font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.04em;margin-top:18px">One technology partner. Multiple solutions.</h2>
+      <p><strong>TONTECH is a technology solutions company focused on helping businesses, organizations, and individuals use technology to work smarter, connect better, and stay secure.</strong></p>
+      <p>We provide reliable and practical technology solutions ranging from <strong>web development and custom software to booking systems, internet services, and surveillance installation.</strong></p>
+      <p>Our goal is to understand each client's needs and provide solutions that are <strong>functional, scalable, secure, and easy to use.</strong> Whether you need a professional website, a customized business system, reliable internet connectivity, or a CCTV surveillance system, TONTECH is ready to help turn your technology needs into working solutions.</p>
+      <p><strong>We don't just provide technology — we build solutions around your needs.</strong></p>
+      <div class="checks">
+        <div class="check"><b>✓</b><span>Solutions built around your specific requirements</span></div>
+        <div class="check"><b>✓</b><span>Modern, responsive and user-friendly technology</span></div>
+        <div class="check"><b>✓</b><span>Support from initial setup through ongoing improvements</span></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>01</strong><span>Digital presence</span></div>
+      <div class="stat"><strong>02</strong><span>Business systems</span></div>
+      <div class="stat"><strong>03</strong><span>Connectivity</span></div>
+      <div class="stat"><strong>04</strong><span>Physical security</span></div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:65px">
+    <div class="section-head">
+      <h2>Our Mission & Vision</h2>
+      <p>Building dependable technology solutions with a focus on practical results and long-term value.</p>
+    </div>
+    <div class="service-grid" style="grid-template-columns:repeat(2,1fr)">
+      <article class="service">
+        <div class="icon">◆</div>
+        <h3>Our Mission</h3>
+        <p>To provide accessible, reliable, and innovative technology solutions that help our clients grow and operate more efficiently.</p>
+      </article>
+      <article class="service">
+        <div class="icon">◇</div>
+        <h3>Our Vision</h3>
+        <p>To become a trusted technology solutions provider, delivering digital, connectivity, and security solutions to businesses and organizations.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:45px">
+    <div class="section-head"><h2>Our Values</h2><p>The principles that guide how we build and deliver our solutions.</p></div>
+    <div class="service-grid">
+      <article class="service"><div class="icon">✦</div><h3>Innovation</h3><p>We embrace better ways of solving problems.</p></article>
+      <article class="service"><div class="icon">✓</div><h3>Reliability</h3><p>We build solutions clients can depend on.</p></article>
+      <article class="service"><div class="icon">◆</div><h3>Quality</h3><p>We focus on practical, well-built solutions.</p></article>
+      <article class="service"><div class="icon">◎</div><h3>Customer Focus</h3><p>We listen first and build around the client's needs.</p></article>
+      <article class="service"><div class="icon">◉</div><h3>Security</h3><p>We take the protection of systems, data, and property seriously.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-box">
+      <div><div class="eyebrow">Let's work together</div><h2 style="font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;margin-top:17px">Have a technology project in mind?</h2><p>Tell us what you need and let's turn the idea into a working solution.</p></div>
+      <div class="actions" style="margin-top:0"><a class="btn btn-primary" href="tel:+254792965445">Call 0792965445 →</a><a class="btn btn-secondary" href="https://wa.me/254792965445?text=Hello%20TONTECH%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">WhatsApp Us</a><a class="btn btn-secondary" href="mailto:infotontechf@gmail.com">Email TONTECH</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+      <div class="footer-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#why-tontech">Why TONTECH</a>
+        <a href="#how-we-work">How We Work</a>
+        <a href="#booking-demo">Booking Demo</a>
+        <a href="#faq">FAQ</a>
+        <a href="#legal">Legal</a>
+      </div>
+
+  <div class="container footer-inner"><div><strong>TONTECH</strong> — Technology Solutions<br><span style="font-size:.88rem">0792965445 · infotontechf@gmail.com</span></div><div>Web • Software • Booking • Internet • Surveillance</div></div>
+  <p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/254792965445?text=Hello%20TONTECH%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" aria-label="Chat with TONTECH on WhatsApp">
+  <span class="whatsapp-icon">◉</span> Chat on WhatsApp
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("quoteForm");
+  if (!form) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const subject = "TONTECH Quote Request - " + (data.get("Service") || "Project Enquiry");
+    const body = [
+      "Name: " + (data.get("Name") || ""),
+      "Company / Organization: " + (data.get("Company") || ""),
+      "Email: " + (data.get("Email") || ""),
+      "Phone: " + (data.get("Phone") || ""),
+      "Service: " + (data.get("Service") || ""),
+      "Estimated Budget: " + (data.get("Budget") || ""),
+      "",
+      "Project Details:",
+      data.get("Project Details") || ""
+    ].join("\n");
+    window.location.href = "mailto:infotontechf@gmail.com?subject=" +
+      encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  });
+});
+</script>
+
+</body>
+</html>
